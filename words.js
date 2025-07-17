@@ -2438,7 +2438,6 @@ const words = [
   "derat",
   "deray",
   "derby",
-  "derby",
   "derek",
   "deric",
   "derma",
@@ -3960,6 +3959,7 @@ const words = [
   "heaps",
   "heapy",
   "heart",
+  "heard",
   "heath",
   "heave",
   "heavy",
@@ -8570,6 +8570,7 @@ const words = [
   "surya",
   "susan",
   "susie",
+  "sushi",
   "sutor",
   "sutra",
   "suyog",
@@ -10238,4 +10239,4 @@ const words = [
   "zygon",
   "zymic",
   "zymin"
-]
+];
