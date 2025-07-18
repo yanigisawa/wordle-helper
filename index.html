@@ -1,126 +1,139 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- 
+
+<head>
+  <!--
       This is an HTML comment
       You can write text in a comment and the content won't be visible in the page
     -->
 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="https://glitch.com/favicon.ico" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="office_folder_icon.ico" />
 
-    <!--
+  <!--
       This is the page head - it contains info the browser uses
       Like the title, which appears on the browser tab but not inside the page
       Further down you'll see the content that displays in the page
     -->
-    <title>Wordle Helper!</title>
-    
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
-    <!-- The website stylesheet -->
-    <link rel="stylesheet" href="/style.css" />
+  <title>Wordle Helper!</title>
 
-    <!-- The website JavaScript file -->
-    <script src="/words.js" defer></script>
-    <script src="/script.js" defer></script>
-    
-    
-  </head>
-  <body>
-    <!--
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+  <!-- The website stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- The website JavaScript file -->
+  <script src="words.js" defer></script>
+  <script src="script.js" defer></script>
+
+
+</head>
+
+<body>
+  <!--
       The body includes the content you see in the page
       Each element is defined using tags, like this <div></div>
       The attributes like class="wrapper" let us style elements in the CSS
     -->
-    <div class="wrapper">
-      <div class="content" role="main">
-        <div class="instructions">
-          <h1>Wordle Helper</h1>
-          <hr/>
-          
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="exclude-label">x</span>
-            <input type="text" id="exclude" class="form-control groupLetters" placeholder="Exclude These Letters" aria-label="Username" aria-describedby="basic-addon1" autocapitalize="none" autocorrect="off">
-          </div>
+  <div class="wrapper">
+    <div class="content" role="main">
+      <div class="instructions">
+        <h1>Wordle Helper</h1>
+        <hr />
 
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="include-label">+</span>
-            <input type="text" id="include" class="form-control groupLetters" placeholder="Include These Letters" aria-label="include these letters" aria-describedby="include-label" autocapitalize="none" autocorrect="off">
-          </div>
-          
-          <h2>
-            Known Letter Positions
-          </h2>
-          <div id="letterBoxes">
-            <input type="text" maxlength="1" id="first" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" maxlength="1" id="second" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="third" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="fourth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="fifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-          </div>
-          
-          <br/>
-          
-          <h2>
-            Include But NOT HERE
-          </h2>
-          <div id="exLetterBoxes">
-            <input type="text" maxlength="1" id="exFirst" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" maxlength="1" id="exSecond" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="exThird" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="exFourth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-            <input type="text" id="exFifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off"/>
-          </div>
-          
-          <div id="wordOptionDiv1">
-            <span style="display: flex;">
-              <h2>
-                Word Options <span id="wordCount"></span>
-              </h2> 
-              <button type="button" onclick="refreshOptions()" style="margin-left: 5px; height:30px; width: 30px; padding: 0">
-                <img src="https://cdn.glitch.global/056103d2-39d3-4ab9-9b19-39fe574f2167/refresh-svgrepo-com%20(1).svg?v=1698438900867" width="16px" height="16px" />
-              </button>
-            </span>
-            
-            <p id="wordList">
-            </p>
-          </div>
-          <hr />
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="exclude-label">x</span>
+          <input type="text" id="exclude" class="form-control groupLetters" placeholder="Exclude These Letters"
+            aria-label="Username" aria-describedby="basic-addon1" autocapitalize="none" autocorrect="off">
+        </div>
+
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="include-label">+</span>
+          <input type="text" id="include" class="form-control groupLetters" placeholder="Include These Letters"
+            aria-label="include these letters" aria-describedby="include-label" autocapitalize="none" autocorrect="off">
+        </div>
+
+        <h2>
+          Known Letter Positions
+        </h2>
+        <div id="letterBoxes">
+          <input type="text" maxlength="1" id="first" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" maxlength="1" id="second" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" id="third" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" id="fourth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" id="fifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
+        </div>
+
+        <br />
+
+        <h2>
+          Include But NOT HERE
+        </h2>
+        <div id="exLetterBoxes">
+          <input type="text" maxlength="1" id="exFirst" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" maxlength="1" id="exSecond" class="singleLetters" autocapitalize="none"
+            autocorrect="off" />
+          <input type="text" id="exThird" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
+          <input type="text" id="exFourth" maxlength="1" class="singleLetters" autocapitalize="none"
+            autocorrect="off" />
+          <input type="text" id="exFifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
+        </div>
+
+        <div id="wordOptionDiv1">
           <span style="display: flex;">
             <h2>
-               Remaining Word Stats
+              Word Options <span id="wordCount"></span>
             </h2>
-          </span>
-          <ul id="wordStats">
-          </ul>
-          <hr />
-          <span style="display: flex;">
-            <h2>
-               Starting Words
-            </h2>
-            <button type="button" onclick="refreshRecommendations()" style="margin-left: 5px; height:30px; width: 30px; padding: 0">
-              <img src="https://cdn.glitch.global/056103d2-39d3-4ab9-9b19-39fe574f2167/refresh-svgrepo-com%20(1).svg?v=1698438900867" width="16px" height="16px" />
+            <button type="button" onclick="refreshOptions()"
+              style="margin-left: 5px; height:30px; width: 30px; padding: 0">
+              <img src="refresh.svg" width="16px" height="16px" />
             </button>
           </span>
-          
-          <ul id="recommdedStartingWords">
-          </ul>
-          <hr/>
-          <p>
-            Once you type at least 1 letter, the top 200 alphabetically remaining
-            words will appear above.  As you guess more and more letters in wordle, you'll have more information to enter here to 
-            exclude or include. 
+
+          <p id="wordList">
           </p>
-          
         </div>
+        <hr />
+        <span style="display: flex;">
+          <h2>
+            Remaining Word Stats
+          </h2>
+        </span>
+        <ul id="wordStats">
+        </ul>
+        <hr />
+        <span style="display: flex;">
+          <h2>
+            Starting Words
+          </h2>
+          <button type="button" onclick="refreshRecommendations()"
+            style="margin-left: 5px; height:30px; width: 30px; padding: 0">
+            <img src="refresh.svg" width="16px" height="16px" />
+          </button>
+        </span>
+
+        <ul id="recommdedStartingWords">
+        </ul>
+        <hr />
+        <p>
+          Once you type at least 1 letter, the top 200 alphabetically remaining
+          words will appear above. As you guess more and more letters in wordle, you'll have more information to enter
+          here to
+          exclude or include.
+        </p>
+
       </div>
     </div>
-    <!-- The footer holds our remix button — you can keep or delete it ✂ -->
-    <footer class="footer">
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
-  </body>
+  </div>
+  <!-- The footer holds our remix button — you can keep or delete it ✂ -->
+  <footer class="footer">
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+    integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
