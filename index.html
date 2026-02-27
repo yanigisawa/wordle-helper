@@ -82,21 +82,6 @@
           <input type="text" id="exFifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
         </div>
 
-        <div id="wordOptionDiv1">
-          <span style="display: flex;">
-            <h2>
-              Word Options <span id="wordCount"></span>
-            </h2>
-            <button type="button" onclick="refreshOptions()"
-              style="margin-left: 5px; height:30px; width: 30px; padding: 0">
-              <img src="refresh.svg" width="16px" height="16px" />
-            </button>
-          </span>
-
-          <p id="wordList">
-          </p>
-        </div>
-        <hr />
         <span style="display: flex;">
           <h2>
             Remaining Word Stats
@@ -117,6 +102,21 @@
 
         <ul id="recommdedStartingWords">
         </ul>
+        <hr />
+        <div id="wordOptionDiv">
+          <span style="display: flex;">
+            <h2>
+              Word Options <span id="wordCount"></span>
+            </h2>
+            <button type="button" onclick="refreshOptions()"
+              style="margin-left: 5px; height:30px; width: 30px; padding: 0">
+              <img src="refresh.svg" width="16px" height="16px" />
+            </button>
+          </span>
+
+          <p id="wordList">
+          </p>
+        </div>
         <hr />
         <p>
           Once you type at least 1 letter, the top 200 alphabetically remaining

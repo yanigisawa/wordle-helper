@@ -1,14 +1,14 @@
 /******************************************************************************
 START Glitch hello-app default styles
 
-The styles in this section do some minimal CSS resets, set default fonts and 
+The styles in this section do some minimal CSS resets, set default fonts and
 colors, and handle the layout for our footer and "Remix on Glitch" button. If
 you're new to CSS they may seem a little complicated, but you can scroll down
 to this section's matching END comment to see page-specific styles.
 ******************************************************************************/
 
 
-/* 
+/*
   The style rules specify elements by type and by attributes such as class and ID
   Each section indicates an element or elements, then lists the style properties to apply
   See if you can cross-reference the rules in this file with the elements in index.html
@@ -22,8 +22,8 @@ to this section's matching END comment to see page-specific styles.
   --wrapper-height: 87vh;
   --image-max-width: 300px;
   --image-margin: 3rem;
-  --font-family: "HK Grotesk";
-  --font-family-header: "HK Grotesk";
+  --font-family: "Verdana", sans-serif;
+  --font-family-header: "Verdana", sans-serif;
 }
 
 /* Basic page style resets */
@@ -49,7 +49,7 @@ to this section's matching END comment to see page-specific styles.
 
 /* Our remix on glitch button */
 .btn--remix {
-  font-family: HK Grotesk;
+  font-family: Verdana, sans-serif;
   padding: 0.75rem 1rem;
   font-size: 1.1rem;
   line-height: 1rem;
@@ -86,7 +86,7 @@ to this section's matching END comment to see page-specific styles.
 
 .footer a:not(.btn--remix):link,
 a:not(.btn--remix):visited {
-  font-family: HK Grotesk;
+  font-family: Verdana, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 1.1rem;
@@ -111,7 +111,7 @@ END Glitch hello-app default styles
 ******************************************************************************/
 
 body {
-  font-family: HK Grotesk;
+  font-family: Verdana, sans-serif;
   background-color: var(--color-bg);
 }
 
@@ -130,7 +130,7 @@ body {
 /* Very light scaling for our illustration */
 .title {
   color: #2800FF;
-  font-family: HK Grotesk;
+  font-family: Verdana, sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 100px;
@@ -167,7 +167,7 @@ input.groupLetters {
 }
 
 input.singleLetters {
-  font-family: inherit;
+  font-family: Verdana, sans-serif;
   font-size: 100%;
   background: #FFFFFF;
   border: 1px solid #000000;
@@ -189,7 +189,7 @@ input.singleLetters {
 
 /* Button - Add it from the README instructions */
 button {
-  font-family: inherit;
+  font-family: Verdana, sans-serif;
   font-size: 100%;
   background: #FFFFFF;
   border: 1px solid #000000;
@@ -200,6 +200,7 @@ button {
 
 /* Subheading */
 h2, h1 {
+  font-family: Verdana, sans-serif;
   color: #4357AD;
 }
 
@@ -228,6 +229,27 @@ h2, h1 {
 }
 
 p {
+  font-family: Verdana, sans-serif;
   color: var(--color-text-main);
   font-size: 1.25em;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.15rem;
+  }
+  .wrapper {
+    margin: 0 0.5rem;
+  }
+  input.singleLetters {
+    width: 32px;
+    height: 38px;
+    margin: 0.2rem 0.3rem;
+  }
+  p {
+    font-size: 1rem;
+  }
 }
