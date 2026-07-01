@@ -143,33 +143,69 @@ function randomizeResults(wordList) {
   }
 }
 
+const INITIAL_LIMIT = 50;
+const MAX_LIMIT = 200;
+let lastFilteredResults = [];
+let wordListExpanded = false;
+
+function renderWordList(results, expanded) {
+  const pTag = document.getElementById("wordList");
+  if (results.length === 0) {
+    pTag.innerHTML = "<b>No results found. Check that are are not including and excluding the same letters</b>"
+    return;
+  }
+
+  const limit = expanded ? MAX_LIMIT : INITIAL_LIMIT;
+  let possibleWords = [];
+  for (let r of results) {
+    if (possibleWords.length >= limit) {
+      break;
+    }
+    possibleWords.push(`${r.toLowerCase()} - `);
+  }
+
+  let html = possibleWords.join('');
+  if (results.length > INITIAL_LIMIT) {
+    if (expanded) {
+      if (results.length > MAX_LIMIT) {
+        html += "...";
+      }
+      html += `<br/><a href="#" id="wordListToggle">Show less</a>`;
+    } else {
+      html += `<br/><a href="#" id="wordListToggle">Show all</a>`;
+    }
+  }
+
+  pTag.innerHTML = html;
+
+  const toggle = document.getElementById("wordListToggle");
+  if (toggle) {
+    toggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      wordListExpanded = !wordListExpanded;
+      renderWordList(lastFilteredResults, wordListExpanded);
+    });
+  }
+}
+
 function filterResults() {
   let results = filterExcludeLetters(words);
   results = filterIncludeLetters(results);
   results = filterLetterPositions(results);
   results = filterIncludedLettersButNotHere(results);
   randomizeResults(results);
-  
-  const pTag = document.getElementById("wordList");
-  
+
+  lastFilteredResults = results;
+  wordListExpanded = false;
+
   let wordCountSpan = document.getElementById("wordCount");
   wordCountSpan.innerHTML = `(${results.length})`;
-  if (results.length === 0) {
-    pTag.innerHTML = "<b>No results found. Check that are are not including and excluding the same letters</b>"
-    return;
+
+  renderWordList(results, wordListExpanded);
+
+  if (results.length > 0) {
+    displayStats(results);
   }
-  let possibleWords = [];
-  for (let r of results) {
-    if (possibleWords.length > 200) {
-      possibleWords.push("...<br/>")
-      break;
-    }
-    possibleWords.push(`${r.toLowerCase()} - `);
-  }
-  
-  displayStats(results);
-  
-  pTag.innerHTML = possibleWords.join('');
 }
 
 function handleGroupInput(e) {
@@ -194,46 +230,13 @@ function handleSingleInput(e) {
   console.log("Entered", e.target.value, " into ", e.target.id);
   filterResults();
   showResults();
-}
-
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function getStartingWords() {
-  let recommendedWords = [];
-  let lettersUsed = [];
-  for(let j=0; j < words.length; j++) {
-    let randomIndex = getRandomInt(words.length - 1);
-    let w = words[randomIndex];
-    
-    let addToList = true;
-    let wordLetters = [];
-    for (let i=0; i < w.length; i++) {
-      if (wordLetters.includes(w[i])) {
-        addToList = false;
-        break;
-      }
-      if (lettersUsed.includes(w[i])) {
-        addToList = false;
-        break;
-      }
-      wordLetters.push(w[i]);  
-    }
-    
-    if (addToList === true) {
-      recommendedWords.push(w);
-      for (let k=0; k < w.length; k++) {
-        lettersUsed.push(w[k]);
-      }
-    }
-    if (lettersUsed.length >= 25) {
-      console.log("All Letters used after", j, lettersUsed);
-      break;
+  if (e.target.value.length === 1) {
+    const next = e.target.nextElementSibling;
+    if (next) {
+      next.focus();
+      next.select();
     }
   }
-  
-  return recommendedWords;
 }
 
 function getWordListStats(wordList) {
@@ -285,22 +288,27 @@ function getWordListStats(wordList) {
   return Object.keys(letters).map(l => [l, letters[l]]).sort(sortItems);
 }
 
+function getKnownLetters() {
+  const knownLetters = [];
+  const inputIds = ["include", "first", "second", "third", "fourth", "fifth",
+                    "exFirst", "exSecond", "exThird", "exFourth", "exFifth"];
+  for (let id of inputIds) {
+    for (let l of document.getElementById(id).value) {
+      knownLetters.push(l.toLowerCase());
+    }
+  }
+  return knownLetters;
+}
+
 function displayStats(wordList) {
   const wordStatsElem = document.getElementById("wordStats");
-  const wordStats = getWordListStats(wordList);
+  const knownLetters = getKnownLetters();
+  const wordStats = getWordListStats(wordList).filter(s => !knownLetters.includes(s[0]));
   wordStatsElem.innerHTML = "<li>" + wordStats.join("</li><li>");
 }
 
-function refreshRecommendations() {
-  console.log("made it here")
-  const recommendedWordList = document.getElementById("recommdedStartingWords");
-  const recWords = getStartingWords();
-  recommendedWordList.innerHTML = "<li>" + recWords.join("</li><li>");
-  displayStats(words);
-}
 
-
-refreshRecommendations();
+displayStats(words);
 
 const txtLetterBoxes = document.getElementsByClassName("singleLetters");
 if (txtLetterBoxes) {
