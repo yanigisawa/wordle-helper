@@ -82,7 +82,8 @@
           <input type="text" id="exFifth" maxlength="1" class="singleLetters" autocapitalize="none" autocorrect="off" />
         </div>
 
-        <div id="wordOptionDiv1">
+        <div id="wordOptionDiv">
+          <hr />
           <span style="display: flex;">
             <h2>
               Word Options <span id="wordCount"></span>
@@ -105,24 +106,10 @@
         <ul id="wordStats">
         </ul>
         <hr />
-        <span style="display: flex;">
-          <h2>
-            Starting Words
-          </h2>
-          <button type="button" onclick="refreshRecommendations()"
-            style="margin-left: 5px; height:30px; width: 30px; padding: 0">
-            <img src="refresh.svg" width="16px" height="16px" />
-          </button>
-        </span>
-
-        <ul id="recommdedStartingWords">
-        </ul>
-        <hr />
         <p>
-          Once you type at least 1 letter, the top 200 alphabetically remaining
-          words will appear above. As you guess more and more letters in wordle, you'll have more information to enter
-          here to
-          exclude or include.
+          Once you type at least 1 letter, up to 50 matching words will appear
+          above. Tap "Show all" to see up to 200 at a time. As you guess more and more letters in wordle, you'll have
+          more information to enter here to exclude or include.
         </p>
 
       </div>
