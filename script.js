@@ -239,6 +239,30 @@ function handleSingleInput(e) {
   }
 }
 
+function jumpToPreviousBox(e) {
+  if (e.target.value !== "") { return; }
+  const prev = e.target.previousElementSibling;
+  if (prev) {
+    e.preventDefault();
+    prev.focus();
+    prev.select();
+  }
+}
+
+function handleSingleKeydown(e) {
+  if (e.key === "Backspace") {
+    jumpToPreviousBox(e);
+  }
+}
+
+// Fallback for mobile virtual keyboards (e.g. GBoard) that report
+// Backspace keydown as "Unidentified"
+function handleSingleBeforeInput(e) {
+  if (e.inputType === "deleteContentBackward") {
+    jumpToPreviousBox(e);
+  }
+}
+
 function getWordListStats(wordList) {
   let recWords = [];
   const letters = {
@@ -314,5 +338,7 @@ const txtLetterBoxes = document.getElementsByClassName("singleLetters");
 if (txtLetterBoxes) {
   for (let txt of txtLetterBoxes) {
     txt.addEventListener('input', handleSingleInput);
+    txt.addEventListener('keydown', handleSingleKeydown);
+    txt.addEventListener('beforeinput', handleSingleBeforeInput);
   }
 }
