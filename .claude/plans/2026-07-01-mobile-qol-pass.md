@@ -446,7 +446,7 @@ git commit -m "feat(ui): add Clear All button to reset all inputs and results"
 
 ---
 
-### Task 5: Backspace navigation in letter boxes
+### Task 5: Backspace navigation in letter boxes ✅ (done in e24dd4b; also added a `beforeinput` fallback for mobile virtual keyboards that report Backspace keydown as "Unidentified")
 
 **Files:**
 - Modify: `script.js` (add `handleSingleKeydown`, wire into the existing `.singleLetters` loop)
@@ -455,7 +455,7 @@ git commit -m "feat(ui): add Clear All button to reset all inputs and results"
 - Consumes: nothing from other tasks.
 - Produces: nothing downstream.
 
-- [ ] **Step 1: Add the keydown handler**
+- [x] **Step 1: Add the keydown handler**
 
 Add after `handleSingleInput` in `script.js`:
 
@@ -472,7 +472,7 @@ function handleSingleKeydown(e) {
 }
 ```
 
-- [ ] **Step 2: Wire it up**
+- [x] **Step 2: Wire it up**
 
 Change the existing loop at the bottom of `script.js` from:
 
@@ -497,12 +497,12 @@ if (txtLetterBoxes) {
 }
 ```
 
-- [ ] **Step 3: Syntax gate**
+- [x] **Step 3: Syntax gate**
 
 Run: `node --check script.js`
 Expected: no output, exit code 0.
 
-- [ ] **Step 4: Manual verification**
+- [ ] **Step 4: Manual verification** *(pending — owner to verify per verifier-manual-only protocol)*
 
 1. Type `ab` into the position boxes: focus auto-advances to box 3 (existing behavior intact).
 2. Press Backspace in the empty box 3: focus moves to box 2 with "b" selected.
@@ -510,7 +510,7 @@ Expected: no output, exit code 0.
 4. Press Backspace in the now-empty box 2: focus moves to box 1 with "a" selected.
 5. Backspace in empty box 1 does nothing (no previous sibling).
 
-- [ ] **Step 5: Commit**
+- [x] **Step 5: Commit** *(e24dd4b, pushed to dev)*
 
 ```bash
 git add script.js
